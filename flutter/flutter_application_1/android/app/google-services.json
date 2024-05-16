@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "950042372653",
+    "firebase_url": "https://capstonejbnuteam8-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "capstonejbnuteam8",
+    "storage_bucket": "capstonejbnuteam8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:950042372653:android:6bb3190d35bc10dc2726a4",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUXC8xbVRdAgtbxhce2lK8whCIZmsETGQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
