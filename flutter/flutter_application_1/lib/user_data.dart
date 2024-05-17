@@ -24,6 +24,7 @@ class _HomePageState extends State<HomePage> {
   String? dropdownValue1;
   String? dropdownValue2;
   String? dropdownValue3;
+  String? dropdownValue4;
 
   @override
   Widget build(BuildContext context) {
@@ -108,6 +109,31 @@ class _HomePageState extends State<HomePage> {
                     });
                   },
                   items: <String>['1학년', '2학년', '3학년', '4학년']
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
+              ),
+            ),
+            SizedBox(width: 20),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: DropdownButtonFormField<String>(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: '건물',
+                  ),
+                  value: dropdownValue4,
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdownValue4 = newValue!;
+                    });
+                  },
+                  items: <String>['공대5호관', '공대4호관', '공대3호관']
                       .map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
