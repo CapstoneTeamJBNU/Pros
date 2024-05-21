@@ -1,26 +1,13 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
+class UserDataSelectionPage extends StatefulWidget {
+  const UserDataSelectionPage({super.key});
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomePage(),
-    );
-  }
+  UserDataSelectionPageState createState() => UserDataSelectionPageState();
+
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
+class UserDataSelectionPageState extends State<UserDataSelectionPage> {
   String? dropdownValue1;
   String? dropdownValue2;
   String? dropdownValue3;

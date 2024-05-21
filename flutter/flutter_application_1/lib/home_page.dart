@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/choice_page.dart';
 import 'package:flutter_application_1/info_page.dart';
 import 'package:flutter_application_1/shedule_table.dart';
+import 'package:flutter_application_1/userData_page.dart';
 
 class HomePage extends StatefulWidget{
   const HomePage({super.key});
@@ -94,8 +96,11 @@ class HomePageState extends State{
                 color: Colors.grey[850],
               ),
               title: Text('Setting'),
-              onTap: () {
-                print('Setting is clicked');
+              onTap: () async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const InfoPage()),
+                    );
               },
               trailing: Icon(Icons.add),
             ),
@@ -105,8 +110,11 @@ class HomePageState extends State{
                 color: Colors.grey[850],
               ),
               title: Text('Q&A'),
-              onTap: () {
-                print('Q&A is clicked');
+              onTap: () async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const UserDataSelectionPage()),
+                    );
               },
               trailing: Icon(Icons.add),
             ),
