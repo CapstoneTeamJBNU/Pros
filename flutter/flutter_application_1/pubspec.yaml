@@ -38,6 +38,7 @@ dependencies:
   crypto: ^3.0.3
   firebase_core: ^2.30.1
   firebase_auth: ^4.19.4
+  logger: ^2.3.0
 
 dev_dependencies:
   flutter_test:
