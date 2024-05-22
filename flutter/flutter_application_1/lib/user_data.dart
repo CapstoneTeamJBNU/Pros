@@ -75,31 +75,6 @@ class _HomePageState extends State<HomePage> {
                 child: DropdownButtonFormField<String>(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    hintText: '학과',
-                  ),
-                  value: dropdownValue2,
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      dropdownValue2 = newValue!;
-                    });
-                  },
-                  items: <String>['소프트웨어공학', '컴퓨터공학', '국제이공']
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                ),
-              ),
-            ),
-            SizedBox(width: 20),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: DropdownButtonFormField<String>(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
                     hintText: '학년',
                   ),
                   value: dropdownValue3,

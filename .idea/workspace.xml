@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8ac3b251-f6f6-4b49-aa2b-721da5414819" name="Changes" comment="1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter/flutter_application_1/lib/register_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/flutter_application_1/lib/register_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter/flutter_application_1/lib/user_data.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/flutter_application_1/lib/user_data.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +66,11 @@
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
 }</component>
-  <component name="RunManager" selected="Flutter.user_data.dart">
+  <component name="RunManager" selected="Flutter.main.dart">
+    <configuration name="choice_page.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="filePath" value="$PROJECT_DIR$/flutter/flutter_application_1/lib/choice_page.dart" />
+      <method v="2" />
+    </configuration>
     <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
       <option name="filePath" value="$PROJECT_DIR$/flutter/flutter_application_1/lib/main.dart" />
       <method v="2" />
@@ -74,6 +80,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Flutter.choice_page.dart" />
       <item itemvalue="Flutter.user_data.dart" />
       <item itemvalue="Flutter.main.dart" />
     </list>

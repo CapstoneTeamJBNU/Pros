@@ -9,6 +9,7 @@ class RegisterPage extends StatefulWidget{
 
 class _RegisterState extends State<RegisterPage>{
   List<TextEditingController> txtCtrl = List.generate(3, (index) => TextEditingController());
+  String? dropdownValue3;  // 학과 선택을 위한 변수
   @override
   void dispose(){
     for (TextEditingController ctrl in txtCtrl){ctrl.dispose();}
@@ -68,6 +69,32 @@ class _RegisterState extends State<RegisterPage>{
               password,
               const Spacer(),
               pwRecheck,
+              const Spacer(),
+              SizedBox(
+                width: double.infinity, // 원하는 너비로 조정
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: DropdownButtonFormField<String>(
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: '학과',
+                    ),
+                    value: dropdownValue3,
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        dropdownValue3 = newValue!;
+                      });
+                    },
+                    items: <String>['소프트웨어공학', '컴퓨터공학', '기계공학', '전자공학']
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ),
               const Spacer(
                 flex: 10,
                 ),
