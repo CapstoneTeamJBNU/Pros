@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/choice_page.dart';
 import 'package:flutter_application_1/info_page.dart';
-import 'package:flutter_application_1/shedule_table.dart';
 import 'package:flutter_application_1/userData_page.dart';
 
 class HomePage extends StatefulWidget{

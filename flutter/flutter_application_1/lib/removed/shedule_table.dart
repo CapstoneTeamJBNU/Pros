@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:logger/web.dart';
 
-import 'lecture.dart';
+import '../lecture.dart';
 
 class ScheduleTable extends StatefulWidget{
   const ScheduleTable({super.key});
