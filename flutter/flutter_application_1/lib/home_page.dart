@@ -95,7 +95,7 @@ class HomePageState extends State{
                 Icons.settings,
                 color: Colors.grey[850],
               ),
-              title: Text('Setting'),
+              title: Text('내 정보'),
               onTap: () async {
                   Navigator.push(
                     context,
@@ -109,13 +109,13 @@ class HomePageState extends State{
                 Icons.question_answer,
                 color: Colors.grey[850],
               ),
-              title: Text('Q&A'),
-              onTap: () async {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const UserDataSelectionPage()),
-                    );
-              },
+              title: Text('TEMP'),
+              // onTap: () async {
+              //     Navigator.push(
+              //       context,
+              //       MaterialPageRoute(builder: (context) => const UserDataSelectionPage()),
+              //       );
+              // },
               trailing: Icon(Icons.add),
             ),
           ],
