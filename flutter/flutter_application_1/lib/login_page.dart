@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/home_page.dart';
 import 'package:flutter_application_1/register_page.dart';
+import 'package:flutter_application_1/choice_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget{
@@ -44,7 +44,7 @@ class LoginPageState extends State{
                 onPressed: () async {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const HomePage()),
+                    MaterialPageRoute(builder: (context) => HomePage()),
                     );
                   // try {
                   //   var emailAddress = 'hiyd125@jbnu.ac.kr';

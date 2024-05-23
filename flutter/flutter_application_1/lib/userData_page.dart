@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/time_table.dart';
 
 class UserDataSelectionPage extends StatefulWidget {
   const UserDataSelectionPage({super.key});
@@ -46,31 +47,6 @@ class UserDataSelectionPageState extends State<UserDataSelectionPage> {
                     });
                   },
                   items: <String>['2024/1', '2023/2', '2023/1']
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                ),
-              ),
-            ),
-            SizedBox(width: 20),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: DropdownButtonFormField<String>(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: '학과',
-                  ),
-                  value: dropdownValue2,
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      dropdownValue2 = newValue!;
-                    });
-                  },
-                  items: <String>['소프트웨어공학', '컴퓨터공학', '국제이공']
                       .map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
@@ -135,8 +111,10 @@ class UserDataSelectionPageState extends State<UserDataSelectionPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // 시간표 생성 버튼 클릭 시 처리할 로직 추가
-          print('저장 버튼이 클릭되었습니다.');
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => TimeTable()),
+          );
         },
         child: Text('저장'),
       ),
