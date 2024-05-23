@@ -1,17 +1,5 @@
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomePage(),
-    );
-  }
-}
+import 'package:flutter_application_1/user_data.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -33,9 +21,11 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              onPressed: () {
-                // 첫 번째 버튼 클릭 시 처리할 로직 추가.
-                print('시간표 생성 버튼이 클릭되었습니다.');
+              onPressed: () async {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage2()),
+                );
               },
               child: Text('시간표 생성'),
             ),
@@ -53,4 +43,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-//추후에 home_page.dart에서 테이블 분리후 홈페이지 병합
