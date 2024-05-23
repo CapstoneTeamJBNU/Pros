@@ -39,7 +39,7 @@ class HomePageState extends State{
             return const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                ScheduleTable(),
+                // ScheduleTable(),
               ],
             );
         },
