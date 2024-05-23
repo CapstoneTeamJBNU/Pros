@@ -10,7 +10,8 @@ class TimeTable extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('수업 시간표'),
+          title: const Text('시간표 생성'),
+          centerTitle: true,
         ),
         body: Container(
           margin: EdgeInsets.all(20), // 외부 여백 추가
