@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8ac3b251-f6f6-4b49-aa2b-721da5414819" name="Changes" comment="1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter/flutter_application_1/lib/choice_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/flutter_application_1/lib/choice_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter/flutter_application_1/lib/login_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/flutter_application_1/lib/login_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter/flutter_application_1/lib/time_table.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/flutter_application_1/lib/time_table.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flutter/flutter_application_1/lib/user_data.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/flutter_application_1/lib/user_data.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

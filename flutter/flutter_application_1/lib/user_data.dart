@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/time_table.dart';
+
 
 class MyApp extends StatelessWidget {
   @override
@@ -119,8 +121,10 @@ class _HomePageState extends State<HomePage2> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // 시간표 생성 버튼 클릭 시 처리할 로직 추가
-          print('저장 버튼이 클릭되었습니다.');
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => TimeTable()),
+          );
         },
         child: Text('저장'),
       ),
