@@ -44,7 +44,7 @@ class LoginPageState extends State{
                 onPressed: () async {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => HomePage()),
+                    MaterialPageRoute(builder: (context) => const ChoicePage()),
                     );
                   // try {
                   //   var emailAddress = 'hiyd125@jbnu.ac.kr';

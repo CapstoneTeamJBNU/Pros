@@ -1,24 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/time_table.dart';
 
-
-class MyApp extends StatelessWidget {
+class UserDataSelectionPage extends StatefulWidget {
+  const UserDataSelectionPage({super.key});
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomePage2(),
-    );
-  }
+  UserDataSelectionPageState createState() => UserDataSelectionPageState();
+
 }
 
-class HomePage2 extends StatefulWidget {
-  const HomePage2({Key? key}) : super(key: key);
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage2> {
+class UserDataSelectionPageState extends State<UserDataSelectionPage> {
   String? dropdownValue1;
   String? dropdownValue2;
   String? dropdownValue3;
