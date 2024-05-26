@@ -11,6 +11,8 @@ class TimeTable extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text('시간표 생성'),
+
+
           centerTitle: true,
         ),
         body: Container(
@@ -102,7 +104,9 @@ class ScheduleTableState extends State<ScheduleTable> {
     );
   }
 
-  List<Widget> buildDayColumn(int index) {
+  List<Widget> buildDayColumn(int dayIndex) {
+    // 요일 이름 리스트
+    const days = ['월', '화', '수', '목', '금'];
     return [
       const VerticalDivider(
         color: Colors.grey,
@@ -117,7 +121,7 @@ class ScheduleTableState extends State<ScheduleTable> {
                 SizedBox(
                   height: 20,
                   child: Text(
-                    week.keys.elementAt(index),
+                    week.keys.elementAt(dayIndex),
                   ),
                 ),
                 ...List.generate(
@@ -138,6 +142,8 @@ class ScheduleTableState extends State<ScheduleTable> {
                       child: ElevatedButton(
                         onPressed: () {
                           // 버튼이 눌렸을 때의 동작
+                          int buttonNumber = (index ~/ 2) + 1;
+                          print('Button ${days[dayIndex]}-$buttonNumber pressed');
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.transparent, // 버튼 배경 색상 투명
@@ -145,7 +151,10 @@ class ScheduleTableState extends State<ScheduleTable> {
                           elevation: 0, // 그림자 없애기
                           side: BorderSide.none, // 테두리 없애기
                         ),
-                        child: Container(), // 빈칸 버튼
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: Text('${days[dayIndex]}-${(index ~/ 2) + 1}'), // 버튼에 고유 번호 표시
+                        ),
                       ),
                     );
                   },

@@ -15,6 +15,8 @@ class TimeTable extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text('시간표 생성'),
+          
+
           centerTitle: true,
         ),
         body: Container(
