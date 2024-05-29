@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/time_table.dart';
 
+import 'account.dart';
+
 class UserDataSelectionPage extends StatefulWidget {
   const UserDataSelectionPage({super.key});
   @override
@@ -113,7 +115,7 @@ class UserDataSelectionPageState extends State<UserDataSelectionPage> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => TimeTable()),
+            MaterialPageRoute(builder: (context) => TimeTable(Account('',''))),
           );
         },
         child: Text('저장'),

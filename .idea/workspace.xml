@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8ac3b251-f6f6-4b49-aa2b-721da5414819" name="Changes" comment="1">
+    <list default="true" id="8ac3b251-f6f6-4b49-aa2b-721da5414819" name="Changes" comment="version update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter/flutter_application_1/lib/time_table.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/flutter_application_1/lib/time_table.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter/flutter_application_1/lib/user_data.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/flutter_application_1/lib/user_data.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter/flutter_application_1/lib/tableset/first_table.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/flutter_application_1/lib/tableset/first_table.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter/flutter_application_1/lib/tableset/time_table.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/flutter_application_1/lib/time_table.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter/flutter_application_1/lib/userData_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/flutter_application_1/lib/userData_page.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +50,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Flutter.choice_page.dart.executor&quot;: &quot;Run&quot;,
+    &quot;Flutter.first_table.dart.executor&quot;: &quot;Run&quot;,
     &quot;Flutter.main.dart.executor&quot;: &quot;Run&quot;,
     &quot;Flutter.time_table.dart.executor&quot;: &quot;Run&quot;,
     &quot;Flutter.user_data.dart.executor&quot;: &quot;Run&quot;,
@@ -67,16 +69,26 @@
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
 }</component>
-  <component name="RunManager" selected="Flutter.main.dart">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\bgj30\work\capstone\Pros\flutter\flutter_application_1\lib" />
+      <recent name="C:\Users\bgj30\work\capstone\Pros\flutter\flutter_application_1\lib\tableset" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Flutter.first_table.dart">
     <configuration name="choice_page.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
       <option name="filePath" value="$PROJECT_DIR$/flutter/flutter_application_1/lib/choice_page.dart" />
+      <method v="2" />
+    </configuration>
+    <configuration name="first_table.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="filePath" value="$PROJECT_DIR$/flutter/flutter_application_1/lib/tableset/first_table.dart" />
       <method v="2" />
     </configuration>
     <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
       <option name="filePath" value="$PROJECT_DIR$/flutter/flutter_application_1/lib/main.dart" />
       <method v="2" />
     </configuration>
-    <configuration name="time_table.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+    <configuration name="time_table.dart" type="FlutterRunConfigurationType" factoryName="Flutter" nameIsGenerated="true">
       <option name="filePath" value="$PROJECT_DIR$/flutter/flutter_application_1/lib/time_table.dart" />
       <method v="2" />
     </configuration>
@@ -87,6 +99,7 @@
     <list>
       <item itemvalue="Flutter.choice_page.dart" />
       <item itemvalue="Flutter.user_data.dart" />
+      <item itemvalue="Flutter.first_table.dart" />
       <item itemvalue="Flutter.main.dart" />
       <item itemvalue="Flutter.time_table.dart" />
     </list>
@@ -108,7 +121,23 @@
       <option name="project" value="LOCAL" />
       <updated>1715868634811</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="version update">
+      <option name="closed" value="true" />
+      <created>1716701372924</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1716701372925</updated>
+    </task>
+    <task id="LOCAL-00003" summary="version update">
+      <option name="closed" value="true" />
+      <created>1716701839013</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1716701839013</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -136,7 +165,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1" />
-    <option name="LAST_COMMIT_MESSAGE" value="1" />
+    <MESSAGE value="version update" />
+    <option name="LAST_COMMIT_MESSAGE" value="version update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
