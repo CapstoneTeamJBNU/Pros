@@ -21,7 +21,8 @@ class ScheduleTableState extends State{
   
 ScheduleTableState(){
   lectureList = [];
-  lectureList.add(Lecture('소프트웨어공학캡스톤프로젝트', '수 7-A,수 7-B,수 8-A,수 8-B,수 9-A,수 9-B,수 10-A,수 10-B', '김순태', '전주:공과대학 5호관 507'));
+  // lectureList.add(Lecture(
+  //   '소프트웨어공학캡스톤프로젝트', '수 7-A,수 7-B,수 8-A,수 8-B,수 9-A,수 9-B,수 10-A,수 10-B', '김순태', '전주:공과대학 5호관 507'));
 }
 
   var kColumnLength = 30;
@@ -126,14 +127,14 @@ List<Widget> buildDayColumn(int index) {
                         ),
                     ),
                     child: Center(
-                      child: lectureList.contains(Lecture(
-                      '',
-                      targ,
-                      '',
-                      '',
-                      ))
-                      ? Text(lectureList.firstWhere((lecture) => lecture.timeSlot == targ).title)
-                      : Text(index.toString()),
+                      // child: lectureList.contains(Lecture(
+                      // '',
+                      // targ,
+                      // '',
+                      // '',
+                      // ))
+                      // ? Text(lectureList.firstWhere((lecture) => lecture.timeSlot == targ).title)
+                      // : Text(index.toString()),
                     )
                   ),
                   );

@@ -10,7 +10,17 @@ class LoginPage extends StatefulWidget{
 }
 
 class LoginPageState extends State{
-  
+  final TextEditingController _emailController = TextEditingController(); //입력되는 값을 제어
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    // 해당 클래스가 사라질떄
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,6 +33,7 @@ class LoginPageState extends State{
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               const Spacer(),
+              // 별도의 위젯화 필수
               const TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -31,6 +42,7 @@ class LoginPageState extends State{
                 ),
               ),
               const Spacer(),
+              // 별도의 위젯화 필수
               const TextField(
                 obscureText: true,
                 decoration: InputDecoration(
@@ -40,28 +52,50 @@ class LoginPageState extends State{
                 ),
               ),
               const Spacer(),
+              // 로그인 버튼 위젯화
               ElevatedButton(
                 onPressed: () async {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const ChoicePage()),
+                  );
+                  try {
+                    // 사용자 인포 스터브
+                    var emailAddress = 'hiyd125@jbnu.ac.kr';
+                    var password = 'rltn12';
+                    // 계정 로그인 시도 메소드
+                    final credential = await FirebaseAuth.instance
+                    .signInWithEmailAndPassword(
+                      email: emailAddress,
+                      password: password
                     );
-                  // try {
-                  //   var emailAddress = 'hiyd125@jbnu.ac.kr';
-                  //   var password = 'rltn12';
-                  //   final credential = await FirebaseAuth.instance
-                  //   .signInWithEmailAndPassword(
-                  //     email: emailAddress,
-                  //     password: password
-                  //   );
-                  //   } on FirebaseAuthException catch (e) {
-                  //     if (e.code == 'user-not-found') {
-                  //       print('No user found for that email.');
-                  //       } else if (e.code == 'wrong-password') {
-                  //         print('Wrong password provided for that user.');
-                  //         }
-                  //         }
-                          },
+                    } on FirebaseAuthException catch (e) {
+                    // 오류 핸들링 로직
+                    if (e.code == 'user-not-found' ||e.code == 'wrong-password') {
+                      showDialog(
+                        context: context,
+                        builder: ((context){
+                          return AlertDialog(
+                            actions: <Widget>[
+                              Container(
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop(); //창 닫기
+                                  },
+                                child: Text("확인"),
+                              ),
+                            ),
+                          ],
+                        );
+                        })
+                        );
+                      print('Wrong infomation please re-check your inputs');
+                      }
+                    else{
+                      print('오류 코드 : '+e.code);
+                    }
+                  }
+                },
                 child: const Text('로그인'),
                 ),
               const Spacer(
