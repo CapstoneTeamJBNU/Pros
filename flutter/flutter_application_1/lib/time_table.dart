@@ -44,16 +44,20 @@ class ScheduleTableState extends State<ScheduleTable> {
   double kButtonWidth = 163; // 버튼의 가로 크기를 조절할 수 있는 변수
   late List<Lecture> lectureList;
   ScheduleTableState(){
+    
     lectureList = [];
+    // 해당 생성자 지점에서 계정 강의 리스트에 대한 동기화 요청 작성 필요
+    // 입력 요소 = 파이어베이스 도큐멘트 스타일
     lectureList.add(Lecture(
       '교양','50','50','50',
       '공개','','공업수학','2',
       '1','3','3','최영하',
       '한국어','','','상대평가Ⅰ',
       '','일반','전체(학부)','일반',
-      '전주:공과대학 4호관 401-1','월 6,월 7,월 8,화 6,화 7,화 8,수 6,수 7,수 8,목 6,목 7,목 8,금 6,금 7,금 8','','50분',
+      '전주:공과대학 4호관 401-1','월 6-A,월 6-B,월 7-A,월 7-B,수 8-A,수 8-B','','50분',
       '강의계획서'
-  ));
+    )
+    );
   }
   @override
   void dispose() {
@@ -114,7 +118,8 @@ class ScheduleTableState extends State<ScheduleTable> {
   }
 
   List<Widget> buildDayColumn(int index) {
-    late String textTemp;
+    late List lectureDate = [];
+    late String date;
     return [
       const VerticalDivider(
         color: Colors.grey,
@@ -129,7 +134,8 @@ class ScheduleTableState extends State<ScheduleTable> {
                 SizedBox(
                   height: 20,
                   child: Text(
-                    week.elementAt(index),
+                    // 요일 인자
+                    date = week.elementAt(index),
                   ),
                 ),
                 ...List.generate(
@@ -142,44 +148,32 @@ class ScheduleTableState extends State<ScheduleTable> {
                       );
                     }
                     // 19:00 이후의 빈칸을 삭제
-                    int hour = index ~/ 2;
-                    if (hour > 5) return SizedBox.shrink();
-                    if (index ~/ 2 > 0 && index % 2 == 1){
-                      textTemp = "캡스톤";
-                    }
-                    else {
-                      textTemp = "";
+                    if (index ~/ 2 > 18) return SizedBox.shrink();
+                    else{
+                      // 과목 시간대 중복일 시, 충돌 이벤트 처리 필수 - 여기 수준에서 진행될 것인지, 강의 변경 화면에서 진행할 것인지에 대한 논의
+                      // 리스트의 전역변수화? 아니면 별도의 스테이지가 있어야 하는가?
+                      lectureDate = List.generate(lectureList.length, (i) => {
+                        lectureList[i].properties["과목명"] : (
+                          lectureList[i].properties["시간."]?.split(',') ?? []
+                          ).map((time) => time.split('-').first).toList()
+                        }
+                        );
                     }
                     return SizedBox(
                       height: kBoxSize,
                       width: kButtonWidth, // 버튼의 가로 크기를 kButtonWidth로 설정
                       child: TextButton(
                         onPressed: (){
-                          Logger().d('Pressed ${week.elementAt(index ~/ 2)} ${index ~/ 2}');
+                          // 해당 부분에서 사용자 상호작용에 대한 처리 작성 필요
+                          Logger().d('Pressed ${date} ${index ~/ 2}');
                         },
-                        child: Text(
-                          // (lectureList.firstWhereOrNull(
-                          // (lecture) => lecture.properties["시간."] == '${week.elementAt(index ~/ 2)} ${index ~/ 2}'
-                          // )?.properties["과목명"]) ?? ''
-                          textTemp
-                        )
-                        ), // 빈칸 버튼
-                      // child: ElevatedButton(
-                      //   onPressed: () {
-                      //     // 버튼이 눌렸을 때의 동작
-                        // },
-                        // style: ElevatedButton.styleFrom(
-                        //   backgroundColor: Colors.transparent, // 버튼 배경 색상 투명
-                        //   shadowColor: Colors.transparent, // 그림자 색상 투명
-                        //   elevation: 0, // 그림자 없애기
-                        //   side: BorderSide.none, // 테두리 없애기
-                        // ),
-                        // child: Text(
-                        // (lectureList.firstWhereOrNull(
-                        //   (lecture) => lecture.properties["시간."] == '${week.elementAt(index ~/ 2)} ${index ~/ 2}'
-                        //   )?.properties["과목명"]) ?? ''
-                        // ), // 빈칸 버튼
-                      // ),
+                        child : Text(
+                          lectureDate.any((element) => element.values.first.contains('${date} ${index ~/ 2}'))
+                          ? '${lectureDate.firstWhere((element) => element.values.first.contains('${date} ${index ~/ 2}')
+                          ).keys.first}' // 값이 매칭될 때의 텍스트 // 값이 매칭될 때의 텍스트
+                          : '' // 값이 매칭되지 않을 때의 텍스트
+                        ),
+                      ),
                     );
                   },
                 ),
