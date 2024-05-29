@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ac3b251-f6f6-4b49-aa2b-721da5414819" name="Changes" comment="version update">
-      <change afterPath="$PROJECT_DIR$/flutter/flutter_application_1/lib/removed/firebase_template.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter/flutter_application_1/lib/login_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/flutter_application_1/lib/login_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter/flutter_application_1/lib/removed/shedule_table.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/flutter_application_1/lib/removed/shedule_table.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter/flutter_application_1/lib/time_table.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/flutter_application_1/lib/time_table.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter/flutter_application_1/lib/userData_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/flutter_application_1/lib/userData_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/EXEL_MANAGER.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/removed/EXEL_MANAGER.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/LECTURE_CROLLER.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/removed/LECTURE_CROLLER.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/LECTURE_EXL_CROLLER.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/removed/LECTURE_EXL_CROLLER.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/LECTURE_SCHEDULER.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/removed/LECTURE_SCHEDULER.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter/flutter_application_1/lib/choice_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/flutter_application_1/lib/choice_page.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +59,7 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "Merging BGJ",
+    "git-widget-placeholder": "BGJ",
     "io.flutter.reload.alreadyRun": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/bgj30/work/capstone/Pros",

@@ -1,35 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/userData_page.dart';
+
 class ChoicePage extends StatelessWidget {
-  const ChoicePage({super.key});
+  const ChoicePage({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            // 로그아웃 버튼을 Row 위젯의 앞쪽에 배치
-            TextButton(
-              onPressed: () {
-                // 로그아웃 버튼 클릭 시 처리할 로직 추가
-                print('로그아웃 버튼이 클릭되었습니다.');
-              },
-              child: Text(
-                '로그아웃',
-                style: TextStyle(color: Colors.white),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: Container(
+          alignment: Alignment.center,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              // 로그아웃 버튼을 Row 위젯의 앞쪽에 배치
+              TextButton(
+                onPressed: () {
+                  // 로그아웃 버튼 클릭 시 처리할 로직 추가
+                  print('로그아웃 버튼이 클릭되었습니다.');
+                },
+                child: Text(
+                  '로그아웃',
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
-            ),
-            // 제목을 가운데에 배치
-            Text(
-              'Home Page',
-              style: TextStyle(color: Colors.white),
-            ),
-          ],
+              // 제목을 가운데에 배치
+              Text(
+                'Home Page',
+                style: TextStyle(color: Colors.black),
+              ),
+              SizedBox(width: 80), // 추가: 로그아웃 버튼과 'Home Page' 텍스트 사이의 간격 조절
+            ],
+          ),
         ),
-        centerTitle: true, // 제목을 가운데로 정렬
-        automaticallyImplyLeading: false, // 뒤로가기 버튼을 없애기
       ),
       body: Center(
         child: Column(
@@ -55,6 +59,8 @@ class ChoicePage extends StatelessWidget {
           ],
         ),
       ),
+
+
       // 사이드바. 잠정 주석 처리
       // drawer: Drawer(
       //     child: ListView(
