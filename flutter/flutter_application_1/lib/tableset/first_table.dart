@@ -14,10 +14,14 @@ class TimeTable extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('시간표 생성'),
-          
-
-          centerTitle: true,
+            title: const Text('시간표 생성'),
+            centerTitle: true,
+            leading: TextButton(
+              onPressed: (){
+                print('로그아웃 버튼눌림');
+              },
+              child: Text('로그아웃',),
+            )
         ),
         body: Container(
           margin: EdgeInsets.all(20), // 외부 여백 추가
