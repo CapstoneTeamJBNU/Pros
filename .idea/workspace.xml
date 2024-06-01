@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8ac3b251-f6f6-4b49-aa2b-721da5414819" name="Changes" comment="version update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter/flutter_application_1/lib/choice_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/flutter_application_1/lib/choice_page.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +61,10 @@
     "git-widget-placeholder": "BGJ",
     "io.flutter.reload.alreadyRun": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/bgj30/work/capstone/Pros",
+    "last_opened_file_path": "C:/Users/bgj30/work/swehw",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "flutter.settings",
     "show.migrate.to.gradle.popup": "false"
   }
