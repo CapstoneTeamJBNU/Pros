@@ -1,3 +1,3 @@
-uvicorn main:app --reload
+uvicorn fastapi-project.main:app --reload
 /recommend_courses/{department}/{grade}/{time}/{course_type}
 http://127.0.0.1:8000/recommend_courses/컴퓨터공학과/3/월1/전공선택
