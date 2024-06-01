@@ -20,6 +20,9 @@ class ChoicePage extends StatelessWidget {
                   // 로그아웃 버튼 클릭 시 처리할 로직 추가
                   print('로그아웃 버튼이 클릭되었습니다.');
                 },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.lightBlueAccent),
+                ),
                 child: Text(
                   '로그아웃',
                   style: TextStyle(color: Colors.black),

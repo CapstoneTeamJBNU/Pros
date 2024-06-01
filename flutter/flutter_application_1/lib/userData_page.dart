@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/time_table.dart';
 import 'account.dart';
-/*<<<<<< HEAD
-=======
-import 'account.dart';
->>>>>>> 2e6305aa897d5585c18e8c01fc3d14fca8b14f1a*/
 
 class UserDataSelectionPage extends StatefulWidget {
   const UserDataSelectionPage({super.key});
   @override
   UserDataSelectionPageState createState() => UserDataSelectionPageState();
-
 }
 
 class UserDataSelectionPageState extends State<UserDataSelectionPage> {
@@ -22,15 +17,35 @@ class UserDataSelectionPageState extends State<UserDataSelectionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('시간표 생성'),
-        centerTitle: true,
-        leading: TextButton(
-          onPressed: () {
-            // 로그아웃 버튼 클릭 시 처리할 로직 추가
-            print('로그아웃 버튼이 클릭되었습니다.');
-          },
-          child: Text('로그아웃'),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: Container(
+          alignment: Alignment.center,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              // 로그아웃 버튼을 Row 위젯의 앞쪽에 배치
+              TextButton(
+                onPressed: () {
+                  // 로그아웃 버튼 클릭 시 처리할 로직 추가
+                  print('로그아웃 버튼이 클릭되었습니다.');
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.lightBlueAccent),
+                ),
+                child: Text(
+                  '로그아웃',
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+              // 제목을 가운데에 배치
+              Text(
+                '시간표 생성',
+                style: TextStyle(color: Colors.black),
+              ),
+              SizedBox(width: 80), // 추가: 로그아웃 버튼과 '시간표 생성' 텍스트 사이의 간격 조절
+            ],
+          ),
         ),
       ),
       body: Center(
@@ -118,7 +133,7 @@ class UserDataSelectionPageState extends State<UserDataSelectionPage> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => TimeTable(Account('',''))),
+            MaterialPageRoute(builder: (context) => TimeTable(Account('', ''))),
           );
         },
         child: Text('저장'),
