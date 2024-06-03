@@ -1,5 +1,12 @@
 from fastapi import FastAPI
+import sys
+from pathlib import Path
+
+# 현재 스크립트의 부모 디렉토리를 sys.path에 추가
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
 from database import get_courses
+from course_recommendation_copy import recommend_alternative_courses_weight
 from course_recommendation import recommend_alternative_courses
 
 app = FastAPI()
@@ -42,7 +49,7 @@ def read_recommended_courses(department: str, grade: int, time: str, course_type
             - courses: 전체 강의 목록 (딕셔너리)
     """
     courses = get_courses()
-    alternative_course_ids = recommend_alternative_courses(department, grade, time, course_type)
+    alternative_course_ids = recommend_alternative_courses_weight(department, grade, time, course_type)
     alternative_courses = [courses[course_id] for course_id in alternative_course_ids]
     return {"alternative_courses": alternative_courses, "courses": courses}
 

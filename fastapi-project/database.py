@@ -1,8 +1,9 @@
 import firebase_admin
 from firebase_admin import credentials, firestore
+import os
 
 # Firebase 초기화 (서비스 계정 키 파일 경로 설정)
-cred = credentials.Certificate('/Users/yosmac/Desktop/fastapi-project/capstonejbnuteam8-firebase-adminsdk-oyel5-b0dfcb4f59.json')  
+cred = credentials.Certificate(os.getcwd()+'/fastapi-project/capstonejbnuteam8-firebase-adminsdk-oyel5-b0dfcb4f59.json')  
 firebase_admin.initialize_app(cred)
 
 # Firestore 클라이언트 생성
@@ -37,11 +38,11 @@ def get_courses():
 
         courses[doc.id] = {
             'course_name': course_data['과목명'],
-            'time': times,
-            'type': course_data['이수구분'],
-            'department': department,
-            'building': building,
-            'grade': grade
+            'time': times, # 요일별 수업시간
+            'type': course_data['이수구분'], # 전공 필수, 전공 선택, 교양(교양 세분화 고려 필요), 일반 선택
+            'department': department, # 학과명
+            'building': building, # 강의실
+            'grade': grade # 학년
         }
 
     return courses
