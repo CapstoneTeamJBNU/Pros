@@ -97,8 +97,7 @@ def filter_courses_by_time_and_building(time, building):
 
     filtered_courses = [
         course
-        for course in courses.values()
-        if time in course['time'] and course.get('building', '') == building
+        for course in courses  # courses.values() 대신 courses 사용
+        if time in course['time'] and building in course.get('building', '')
     ]
-
     return filtered_courses
