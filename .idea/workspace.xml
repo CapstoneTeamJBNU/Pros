@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8ac3b251-f6f6-4b49-aa2b-721da5414819" name="Changes" comment="version update">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter/flutter_application_1/lib/tableset/first_table.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/flutter_application_1/lib/tableset/first_table.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter/flutter_application_1/lib/tableset/time_table.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/flutter_application_1/lib/time_table.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flutter/flutter_application_1/lib/userData_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/flutter_application_1/lib/userData_page.dart" afterDir="false" />
-    </list>
+    <list default="true" id="8ac3b251-f6f6-4b49-aa2b-721da5414819" name="Changes" comment="version update" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,7 +59,10 @@
     &quot;git-widget-placeholder&quot;: &quot;BGJ&quot;,
     &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/bgj30/work/capstone/Pros&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/bgj30/work/swehw&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;flutter.settings&quot;,
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
@@ -75,7 +73,7 @@
       <recent name="C:\Users\bgj30\work\capstone\Pros\flutter\flutter_application_1\lib\tableset" />
     </key>
   </component>
-  <component name="RunManager" selected="Flutter.first_table.dart">
+  <component name="RunManager" selected="Flutter.main.dart">
     <configuration name="choice_page.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
       <option name="filePath" value="$PROJECT_DIR$/flutter/flutter_application_1/lib/choice_page.dart" />
       <method v="2" />
@@ -97,8 +95,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Flutter.choice_page.dart" />
       <item itemvalue="Flutter.user_data.dart" />
+      <item itemvalue="Flutter.choice_page.dart" />
       <item itemvalue="Flutter.first_table.dart" />
       <item itemvalue="Flutter.main.dart" />
       <item itemvalue="Flutter.time_table.dart" />
@@ -137,7 +135,23 @@
       <option name="project" value="LOCAL" />
       <updated>1716701839013</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="version update">
+      <option name="closed" value="true" />
+      <created>1716972074532</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716972074532</updated>
+    </task>
+    <task id="LOCAL-00005" summary="version update">
+      <option name="closed" value="true" />
+      <created>1717243678863</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1717243678863</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

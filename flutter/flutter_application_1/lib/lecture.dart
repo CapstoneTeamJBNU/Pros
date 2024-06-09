@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Lecture {
   Map<String, String> properties = {
     "이수구분": '',
@@ -26,14 +28,15 @@ class Lecture {
     "수업시간": '',
     "강의계획서": '',
   };
+  late String lectureId;
 
-  Lecture(String classification, String assignedNum, String allowedNum, String totalNum,
-  String visibility, String invisibleReason, String title, String roomNum,
-  String score, String totalTime, String professor, String language,
-  String classificLiberal, String specificClassificLiberal, String swLiberal, String relativeAbsolute,
-  String lectureDirection, String certCategory, String lectureTarget, String roomOffered,
-  String lectureRoom, String dayTime, String lectureMajor, String lectureTime,
-  String lectureCode
+  Lecture({String classification="", String assignedNum="", String allowedNum="", String totalNum="",
+  String visibility="", String invisibleReason="", String title="", String roomNum="",
+  String score="", String totalTime="", String professor="", String language="",
+  String classificLiberal="", String specificClassificLiberal="", String swLiberal="", String relativeAbsolute="",
+  String lectureDirection="", String certCategory="", String lectureTarget="", String roomOffered="",
+  String lectureRoom="", String dayTime="", String lectureMajor="", String lectureTime="",
+  String lectureCode=""}
   ) {
     properties["이수구분"] = classification;
     properties["수강인원"] = assignedNum;
@@ -61,15 +64,13 @@ class Lecture {
     properties["수업시간"] = lectureTime;
     properties["강의계획서"] = lectureCode;
   }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is Lecture &&
-        other.properties.keys.every((key) => properties[key] == other.properties[key]);
+  factory Lecture.fromFirestore(DocumentSnapshot doc) {
+    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+    Lecture lecture = Lecture();
+    lecture.id = doc.id;
+    lecture.properties = data.map((key, value) => MapEntry(key, value.toString()));
+    return lecture;
   }
-
-  @override
-  int get hashCode => properties.hashCode; //^ timeSlot.hashCode;
+  
+  set id(String id) {}
 }
