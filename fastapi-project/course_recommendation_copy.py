@@ -1,97 +1,86 @@
-import random
 from database import get_courses
 
-# 개미 수, 페로몬 증발률, 최대 반복 횟수 등 파라미터 설정
-num_ants = 10
-evaporation_rate = 0.5
-max_iterations = 100
+"""
+    가정 :
+        1. 가중치 초기값은 자동으로 n분의 1로 분배
+        2. 사용자가 시간표 생성시 가중치 조율 가능
+        3. 사용자가 지정 강의 삽입 가능
+        4. 사용자가 강의 범위 지정 가능
+        5. 사용자 데이터는 초기에 입력됨
 
-INPUT = 'course_input.txt'
-import sys
-sys.stdin = open(INPUT, "r")
+    흐름 :
+        1. 사용자가 가입할 때 정보를 입력함
+        2. 시스템은 초기 시간표 생성을 수행함
+        3. 사용자가 내 시간표 보기를 선택하면 시간표 결과를 보여줌
+        4. 생성된 강의 목록중 일부를 누르면 해당 강의의 상세 정보와 가중치 합산을 보여줌
+        # 단, 결과값은 가중치 적용 이전의 점수계를 반환
+        5. 이후 사용자가 해당 강의 시간표와 가중치를 조절하고, 추가적으로 추천을 요청할 수 있음
+"""
 
-def recommend_alternative_courses_weight(department, grade, time, course_type):
-    # Firestore에서 전처리된 강의 정보 가져오기
+
+def recommend_courses(department, time, course_type):
     courses = get_courses()
-
-    # 강의 필터링 (시간, 이수 구분, 학과 - 전공 선택 과목인 경우에만)
-    filtered_courses = {
-        course_id: course_data
-        for course_id, course_data in courses.items()
-        if time in course_data['time'] and course_data['type'] == course_type and
-           (course_type != '전공선택' or (course_data.get('department', '') == department and
-                                        course_data.get('grade', None) == grade))
+    # 건물 위치 점수 딕셔너리
+    building_scores = {
+        '공과대학 5호관': 0.04,
+        '공과대학 1호관': 0.02,
+        '공과대학 9호관': 0.01
     }
-    def calculate_weight(course_data):
-        # 이수 구분 가중치 (전공 필수: 3, 전공 선택: 2, 교양: 1)
-        type_weight = {'전공필수': 3, '전공선택': 2, '교양': 1}.get(course_data['type'], 0)
-        # 수강 인원/허용 인원 가중치
-        enrollment_ratio = course_data['enrollment'] / course_data['capacity']
-        enrollment_weight = 1 - enrollment_ratio if enrollment_ratio < 1 else 0 # 높을수록 수강정원이 여유로운 경우임
-        # 수치가 낮을 수록 페로몬이 강해질 것, 그렇다면 터질 강의라는 건데?
 
-        # 강의실 가중치 (원격 강의: 0, 그 외: 강의실 좌표)
-        location_weight = 0 if course_data['location'] == ':' else course_data['location']
+    # 필터링 조건 리스트
+    conditions = []
 
-        # 거리가 도보 10분을 넘어가는 경우, 비공개 과목인 경우 극한값 부여
-        if course_data['distance'] > 10 or course_data['is_private']:
-            return float('inf')
+    # 필터링 함수
+    def filtering(args, conditions):
+        pass
 
-        return type_weight + enrollment_weight + location_weight
+    # 건물 위치 기반 점수 부여
+    def score_by_building(course):
+        return building_scores.get(course['building'], 0)  # building_scores에 없는 건물은 0점 처리
 
-    # 페로몬 초기값 설정
-    pheromone = {course_id: calculate_weight(course_data) for course_id, course_data in filtered_courses.items()}
-    # 기존 페로몬 초기값 설정
-    # pheromone = {course_id: 1.0 for course_id in filtered_courses}
-
-    # 개미 이동 함수 (시간대가 겹치는 강의만 선택, 건물 선호도는 제외)
-    def move_ant(ant, time):
-        available_courses = [
-            course_id
-            for course_id in filtered_courses
-            if time in filtered_courses[course_id]['time']
-        ]
-
-        # 페로몬 농도를 고려하여 다음 강의 선택
-        probabilities = [pheromone[course_id] for course_id in available_courses]
-        total_probability = sum(probabilities)
-        if total_probability == 0:  # 선택 가능한 강의가 없을 경우 빈 리스트 반환
-            return []
-        probabilities = [p / total_probability for p in probabilities]
-        next_course_id = random.choices(available_courses, weights=probabilities)[0]
-        ant.append(next_course_id)
-
-    # 페로몬 업데이트 함수
-    def update_pheromone(ants):
-        for course_id in pheromone:
-            pheromone[course_id] *= evaporation_rate
-        for ant in ants:
-            for course_id in ant:
-                pheromone[course_id] += 1 / len(ant)
-
-    # 메인 루프
-    for iteration in range(max_iterations):
-        ants = [[] for _ in range(num_ants)]
-        for ant in ants:
-            move_ant(ant, time)
-        update_pheromone(ants)
-
-    # 추천 결과 반환 (페로몬 농도 상위 3개 강의)
-    alternative_courses = [course_id for course_id in pheromone if pheromone[course_id] > 1.0]
-    sorted_courses = sorted(alternative_courses, key=lambda course_id: pheromone[course_id], reverse=True)
-    return sorted_courses[:3]
-
-
-if __name__ == '__main__':
-    # 선과목 입력
-    predecision = ['공업수학', '이산수학']
-
-    # 학과, 학년, 시간대, 이수 구분 입력
-    department = input()
-    grade = int(input())
-    time = input()
-    course_type = input()
-    # 가중치 조절
+    # 평점 기반 점수 부여
+    def score_by_rating(course):
+        return float(course['rating'])
     
-    result = recommend_alternative_courses_weight(department, grade, time, course_type)
-    print(result)
+    # 가중치 비율 설정 및 가중치 계산
+    weight_args = []
+    ratios = []
+
+    # 가중치에 들어가는 요소 순번은 항상 지켜져야 하며, 타입도 float이나 int로 통일해야 함
+    def set_weight_ratio(ratio):
+        ratios.append(ratio)
+
+    def calc_weight(args, ratios):
+        weight = 0
+        for arg, ratio in args, ratios:
+            weight += arg * ratio
+        return weight
+    
+
+    # 강의 순회 - 각 개미들 관점에서 순회한 강의는 지역적으로 제외해야 함
+    # 그러나, copy형태로 수행하기에는 기하급수적으로 데이터가 늘어나는 기술적 문제
+    # 차라리 한 배열에서 각 개미가 순회했던 과목들에 대한 history를 이용하는건?
+    # history는 과목을 넣기보단 해당 과목의 인덱스 번호를 저장하는 방식이 좋을 것 같음
+    def travel_courses(courses):
+        pass
+    
+    # 페로몬 갱신에 대한 이해 필요
+    # 동일하게 강의 크기와 동일한 배열 생성해 페로몬을 저장하고, 각 개미가 지나간 경로에 대해 페로몬을 갱신
+    def pheromone_update():
+        pass
+
+    # 강의 조합 생성 사이클
+    # 한 사이클의 분기 조건 - 강의 최대갯수를 채우면 중지
+    # 전체 사이클의 분기 조건 - 충분한 수행으로 어떤 수에 수렴하게 될 때 중지
+    def test_cycle():
+        pass
+
+    # 강의 총점, 강의 평점, 강의 코멘트 긍정률 비교
+    def compare_rates():
+        pass
+
+    # 이후 추가할 내용들...
+    def some():
+        pass
+
+    pass
