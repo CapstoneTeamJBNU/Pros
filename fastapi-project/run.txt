@@ -1,4 +1,4 @@
-uvicorn main:app --reload  #서버 실행 코드
+uvicorn fastapi-project.main:app --reload  #서버 실행 코드
 
 1. 모든 강의 정보를 가져오는 엔드포인트
 http://127.0.0.1:8000/courses

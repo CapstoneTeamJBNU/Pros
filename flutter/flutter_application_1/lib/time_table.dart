@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_application_1/lecture_analysis.dart';
 import 'package:logger/web.dart';
 import 'package:random_color/random_color.dart';
-import 'package:flutter_application_1/removed/firestore_lecture_listview.dart';
+import 'package:flutter_application_1/firestore_lecture_listview.dart';
 
 import 'account.dart';
 import 'lecture.dart';
