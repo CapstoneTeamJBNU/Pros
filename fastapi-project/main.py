@@ -1,4 +1,10 @@
 from fastapi import FastAPI
+import sys
+from pathlib import Path
+
+# 현재 스크립트의 부모 디렉토리를 sys.path에 추가
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
 from database import get_courses
 from course_recommendation import recommend_courses
 from course_recommendation import filter_courses_by_time_and_building

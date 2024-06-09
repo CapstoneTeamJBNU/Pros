@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 import custom_firestore
 import time
-import EXEL_MANAGER as exl
+import Pros.python.removed.EXEL_MANAGER as exl
 
 EXL_PATH = 'demo-repository-1/python/EXCEL'
 
