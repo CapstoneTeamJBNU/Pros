@@ -11,6 +11,7 @@ import 'lecture.dart';
 class TimeTable extends StatelessWidget {
   final Account account;
   const TimeTable(this.account, {super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,9 +24,9 @@ class TimeTable extends StatelessWidget {
           title: const Text('수업 시간표'),
         ),
         body: Container(
-          margin: const EdgeInsets.all(20), // 외부 여백 추가
+          margin: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey), // 테두리 추가
+            border: Border.all(color: Colors.grey),
           ),
           child: ScheduleTable(account),
         ),
@@ -35,26 +36,24 @@ class TimeTable extends StatelessWidget {
 }
 
 class ScheduleTable extends StatefulWidget {
-  const ScheduleTable(Account account,{super.key});
+  const ScheduleTable(Account account, {super.key});
+
   @override
   ScheduleTableState createState() => ScheduleTableState();
 }
 
 class ScheduleTableState extends State<ScheduleTable> {
-  /* 테이블 UI 변수 */
   final List<String> week = ['월', '화', '수', '목', '금', '토', '일'];
   var kColumnLength = 22;
   double kFirstColumnHeight = 20;
-  double kBoxSize = 55; // kBoxSize 변수의 값을 줄임
-  double kButtonWidth = 163; // 버튼의 가로 크기를 조절할 수 있는 변수
+  double kBoxSize = 55;
+  double kButtonWidth = 163;
 
-  /* 파이어베이스 데이터 참조용 변수들 */
   late List<Lecture> lectureList;
 
   Future<void> initLectureList() async {
     List<Lecture> result = [];
 
-    /* 스터브들 */
     const String defaultDirectory = 'UNIV_LIST';
     const String accountCollection = 'ACCOUNT_INFO';
     const String accountId = '3naGNQCcm3SVumZY2HTe';
@@ -64,25 +63,24 @@ class ScheduleTableState extends State<ScheduleTable> {
     const String lectureCollection = 'OPEN_LECTURE_2024_0';
 
     var logger = Logger();
-    try{
+    try {
       DocumentSnapshot basketQuery = await FirebaseFirestore.instance.collection(accountCollection)
-      .doc(accountId)
-      .collection(lectureBasket)
-      .doc(docTag)
-      .get();
+          .doc(accountId)
+          .collection(lectureBasket)
+          .doc(docTag)
+          .get();
       List<String?>? documentData = (basketQuery.data() as Map<String, dynamic>?)?.values.toList().cast<String>();
 
       for (int i = 0; i < documentData!.length; i++) {
         DocumentSnapshot doc = await FirebaseFirestore.instance.collection(defaultDirectory)
-          .doc(identifier)
-          .collection(lectureCollection)
-          .doc(documentData[i])
-          .get();
+            .doc(identifier)
+            .collection(lectureCollection)
+            .doc(documentData[i])
+            .get();
         result.add(Lecture.fromFirestore(doc));
         // logger.i('${result[i].lectureId} ${result[i].properties["과목명"]} ${result[i].properties["시간"]}');
       }
-    }
-    catch(e){
+    } catch (e) {
       logger.e(e);
     }
     lectureList = result;
@@ -98,10 +96,21 @@ class ScheduleTableState extends State<ScheduleTable> {
   void dispose() {
     super.dispose();
   }
-  
-  /* 새 코드 */
+
   @override
   Widget build(BuildContext context) {
+    // 강의명-색상 매핑 딕셔너리 (전역 변수로 선언)
+    final Map<String, Color> courseColors = {};
+
+    Color getCourseColor(String courseName) {
+      if (!courseColors.containsKey(courseName)) {
+        courseColors[courseName] = RandomColor().randomColor(
+          colorHue: ColorHue.multiple(colorHues: [ColorHue.blue, ColorHue.green, ColorHue.purple])
+        );
+      }
+      return courseColors[courseName]!;
+    }
+
     return FutureBuilder(
       future: initLectureList(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -196,84 +205,103 @@ class ScheduleTableState extends State<ScheduleTable> {
     );
   }
 
-  List<Widget> buildDayColumn(int index) {
-    late List lectureDate = [];
-    late String date;
-    RandomColor randomColor = RandomColor();
-    return [
-      const VerticalDivider(
-        color: Colors.grey,
-        width: 0,
-      ),
-      Expanded(
-        flex: 4,
-        child: Stack(
-          children: [
-            Column(
-              children: [
-                SizedBox(
-                  height: 20,
-                  child: Text(
-                    // 요일 인자
-                    date = week.elementAt(index),
-                  ),
-                ),
-                ...List.generate(
-                  kColumnLength,
-                      (index) {
-                    if (index % 2 == 0) {
-                      return const Divider(
-                        color: Colors.grey,
-                        height: 0,
-                      );
-                    }
-                    // 19:00 이후의 빈칸을 삭제
-                    if (index ~/ 2 > 18) {
-                      return const SizedBox.shrink();
-                    } else{
-                      // 과목 시간대 중복일 시, 충돌 이벤트 처리 필수 - 여기 수준에서 진행될 것인지, 강의 변경 화면에서 진행할 것인지에 대한 논의
-                      // 리스트의 전역변수화? 아니면 별도의 스테이지가 있어야 하는가?
-                      lectureDate = List.generate(lectureList.length, (i) => {
-                        lectureList[i].properties["과목명"] : (
-                          lectureList[i].properties["시간"]?.split(',') ?? []
-                          ).map((time) => time.split('-').first).toList()
-                        }
-                        );
-                    }
-                    return SizedBox(
-                      height: kBoxSize,
-                      width: kButtonWidth, // 버튼의 가로 크기를 kButtonWidth로 설정
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          color: lectureDate.any((element) => element.values.first.contains('$date ${index ~/ 2}'))
-                            ? randomColor.randomColor(
-                            colorHue: ColorHue.multiple(colorHues: [ColorHue.blue, ColorHue.green, ColorHue.purple]))// 값이 매칭될 때의 텍스트 // 값이 매칭될 때의 텍스트
-                            : Colors.transparent,
-                        ),
-                        child: TextButton(
-                          onPressed: (){
-                            lectureDate.any((element) => element.values.first.contains('$date ${index ~/ 2}'))
-                            ? showDialogExist(context)
-                            : showDialogNotExist(context);
-                          },
-                          child : Text(
-                            lectureDate.any((element) => element.values.first.contains('$date ${index ~/ 2}'))
-                            ? '${lectureDate.firstWhere((element) => element.values.first.contains('$date ${index ~/ 2}')
-                            ).keys.first}' // 값이 매칭될 때의 텍스트 // 값이 매칭될 때의 텍스트
-                            : '' // 값이 매칭되지 않을 때의 텍스트
-                          ),
-                        )
-                      ),
-                    );
-                  },
-                ),
-              ],
-            )
-          ],
-        ),
-      ),
-    ];
+List<Widget> buildDayColumn(int index) {
+  late List lectureDate = [];
+  late String date;
+  RandomColor randomColor = RandomColor();
+
+  // 강의명-색상 매핑 딕셔너리
+  final Map<String, Color> courseColors = {};
+
+  Color getCourseColor(String courseName) {
+    if (!courseColors.containsKey(courseName)) {
+      courseColors[courseName] = randomColor.randomColor(
+        colorHue: ColorHue.multiple(colorHues: [ColorHue.blue, ColorHue.green, ColorHue.purple])
+      );
+    }
+    return courseColors[courseName]!;
   }
+
+  return [
+    const VerticalDivider(
+      color: Colors.grey,
+      width: 0,
+    ),
+    Expanded(
+      flex: 4,
+      child: Stack(
+        children: [
+          Column(
+            children: [
+              SizedBox(
+                height: 20,
+                child: Text(
+                  // 요일 인자
+                  date = week.elementAt(index),
+                ),
+              ),
+              ...List.generate(
+                kColumnLength,
+                (index) {
+                  if (index % 2 == 0) {
+                    return const Divider(
+                      color: Colors.grey,
+                      height: 0,
+                    );
+                  }
+                  // 19:00 이후의 빈칸을 삭제
+                  if (index ~/ 2 > 18) {
+                    return const SizedBox.shrink();
+                  } else {
+                    // 강의 시간대 중복 처리
+                    lectureDate = List.generate(
+                      lectureList.length,
+                      (i) => {
+                        lectureList[i].properties["과목명"]: (lectureList[i].properties["시간"]?.split(',') ?? [])
+                            .map((time) => time.split('-').first)
+                            .toList()
+                      },
+                    );
+                  }
+                  return SizedBox(
+                    height: kBoxSize,
+                    width: kButtonWidth, // 버튼의 가로 크기를 kButtonWidth로 설정
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: lectureDate.any((element) => element.values.first.contains('$date ${index ~/ 2}'))
+                            ? getCourseColor(lectureDate.firstWhere(
+                                (element) => element.values.first.contains('$date ${index ~/ 2}')).keys.first)
+                            : Colors.transparent,
+                      ),
+                      child: TextButton(
+                        onPressed: () {
+                          lectureDate.any((element) => element.values.first.contains('$date ${index ~/ 2}'))
+                              ? showDialogExist(context)
+                              : showDialogNotExist(context);
+                        },
+                        child: Text(
+                          lectureDate.any((element) => element.values.first.contains('$date ${index ~/ 2}'))
+                              ? '${lectureDate.firstWhere(
+                                  (element) => element.values.first.contains('$date ${index ~/ 2}')).keys.first}'
+                              : '', // 값이 매칭되지 않을 때의 텍스트
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold, // 두꺼운 글씨체
+                            color: Colors.white, // 흰색 글씨
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ],
+          )
+        ],
+      ),
+    ),
+  ];
+}
+
 }
 extension FirstWhereOrNullExtension<T> on List<T> {
   T? firstWhereOrNull(bool Function(T) test) {
