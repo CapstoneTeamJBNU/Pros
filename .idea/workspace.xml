@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8ac3b251-f6f6-4b49-aa2b-721da5414819" name="Changes" comment="version update" />
+    <list default="true" id="8ac3b251-f6f6-4b49-aa2b-721da5414819" name="Changes" comment="version update">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter/flutter_application_1/lib/time_table.dart" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/flutter_application_1/lib/time_table.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter/flutter_application_1/linux/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/flutter_application_1/linux/flutter/generated_plugin_registrant.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter/flutter_application_1/linux/flutter/generated_plugin_registrant.h" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/flutter_application_1/linux/flutter/generated_plugin_registrant.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter/flutter_application_1/linux/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/flutter_application_1/linux/flutter/generated_plugins.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter/flutter_application_1/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/flutter_application_1/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flutter/flutter_application_1/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/flutter/flutter_application_1/pubspec.yaml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,10 +31,24 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="BGJ" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;itsmebgj&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="16e62039-1a15-4cf0-bc21-2c3923032b1d" />
+        <option name="url" value="https://github.com/CapstoneTeamJBNU/Pros.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -35,7 +57,7 @@
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2gYCG49WFsXhcNFv0jbTmFhF3iI" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -74,14 +96,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Flutter.main.dart">
-    <configuration name="choice_page.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
-      <option name="filePath" value="$PROJECT_DIR$/flutter/flutter_application_1/lib/choice_page.dart" />
-      <method v="2" />
-    </configuration>
-    <configuration name="first_table.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
-      <option name="filePath" value="$PROJECT_DIR$/flutter/flutter_application_1/lib/tableset/first_table.dart" />
-      <method v="2" />
-    </configuration>
     <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
       <option name="filePath" value="$PROJECT_DIR$/flutter/flutter_application_1/lib/main.dart" />
       <method v="2" />
@@ -90,14 +104,7 @@
       <option name="filePath" value="$PROJECT_DIR$/flutter/flutter_application_1/lib/time_table.dart" />
       <method v="2" />
     </configuration>
-    <configuration name="user_data.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
-      <option name="filePath" value="$PROJECT_DIR$/flutter/flutter_application_1/lib/user_data.dart" />
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="Flutter.user_data.dart" />
-      <item itemvalue="Flutter.choice_page.dart" />
-      <item itemvalue="Flutter.first_table.dart" />
       <item itemvalue="Flutter.main.dart" />
       <item itemvalue="Flutter.time_table.dart" />
     </list>
