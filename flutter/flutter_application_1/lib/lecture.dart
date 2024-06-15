@@ -67,10 +67,11 @@ class Lecture {
   factory Lecture.fromFirestore(DocumentSnapshot doc) {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
     Lecture lecture = Lecture();
-    lecture.id = doc.id;
     lecture.properties = data.map((key, value) => MapEntry(key, value.toString()));
+    lecture.lectureId = doc.id;
     return lecture;
   }
-  
-  set id(String id) {}
+
+  String get id => lectureId;
+  set id(String id) => lectureId = id;
 }

@@ -1,8 +1,19 @@
 from aco_algorithm import ant_colony
+from database import get_courses
 
-# given some nodes, and some locations...
-test_nodes = {0: (0, 7), 1: (3, 9), 2: (12, 4), 3: (14, 11), 4: (8, 11),
-              5: (15, 6), 6: (6, 15), 7: (15, 9), 8: (12, 10), 9: (10, 7)}
+# 건물 위치 점수 딕셔너리
+building_scores = {
+    '공과대학 5호관': 0.04,
+    '공과대학 1호관': 0.02,
+    '공과대학 9호관': 0.01
+}
+
+# 이수 체계별 점수 딕셔너리
+curriculum_scores = {
+	'교양':0.02,
+	'일반선택':0.04,
+	'전공선택':0.01,
+}
 
 # ...and a function to get distance between nodes...
 def distance(start, end):
@@ -13,9 +24,15 @@ def distance(start, end):
 	import math
 	return math.sqrt(pow(x_distance, 2) + pow(y_distance, 2))
 
-# 개미 군집을 만듦.
-# 어차피 거리를 전단계에서 계산하므로, 거리 대신 가중치 결과를 반환하는 것도 가능하지 않을까?
-colony = ant_colony(test_nodes, distance)
+def calc_weight(course, args, distance):
+	total = 0
+	for i in args:
+		total += i
 
-# 아래 구문을 통해 최적 경로를 찾을 수 있음
-answer = colony.mainloop()
+
+if __name__ == "__main__":
+	arguments = [building_scores, curriculum_scores]
+	courses = get_courses()
+	# 전체 데이터 포함 노드, 거리 계산 함수, 추가 인자
+	colony = ant_colony(courses, calc_weight, distance)
+	answer = colony.mainloop()

@@ -116,7 +116,7 @@ class LoginPageState extends State{
                         onPressed: (){
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => RegisterPage()),
+                            MaterialPageRoute(builder: (context) => const RegisterPage()),
                           );
                         },
                       child: const Text('회원가입')

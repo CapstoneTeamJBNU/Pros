@@ -169,6 +169,7 @@ class ant_colony:
                 return self.distance_traveled
             return None
         
+    # 여기가 알고리즘 시작점
     def __init__(self, nodes, distance_callback, start=None, ant_count=50, alpha=.5, beta=1.2,  pheromone_evaporation_coefficient=.40, pheromone_constant=1000.0, iterations=80):
         """
         알고리즘에 따라 최적 경로를 찾기 위해 여러 작업자 개미들이 지도를 탐색하는 개미 군집을 초기화합니다. (ACO [Ant Colony Optimization]에 따라)

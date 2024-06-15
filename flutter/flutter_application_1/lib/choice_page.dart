@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/userData_page.dart';
 
 class ChoicePage extends StatelessWidget {
-  const ChoicePage({Key? key});
+  const ChoicePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(kToolbarHeight),
+        preferredSize: const Size.fromHeight(kToolbarHeight),
         child: Container(
           alignment: Alignment.center,
           child: Row(
@@ -23,17 +23,17 @@ class ChoicePage extends StatelessWidget {
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(Colors.lightBlueAccent),
                 ),
-                child: Text(
+                child: const Text(
                   '로그아웃',
                   style: TextStyle(color: Colors.black),
                 ),
               ),
               // 제목을 가운데에 배치
-              Text(
+              const Text(
                 'Home Page',
                 style: TextStyle(color: Colors.black),
               ),
-              SizedBox(width: 80), // 추가: 로그아웃 버튼과 'Home Page' 텍스트 사이의 간격 조절
+              const SizedBox(width: 80), // 추가: 로그아웃 버튼과 'Home Page' 텍스트 사이의 간격 조절
             ],
           ),
         ),
@@ -46,19 +46,21 @@ class ChoicePage extends StatelessWidget {
               onPressed: () async {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const UserDataSelectionPage()),
+                  MaterialPageRoute(builder: (context) => const SelectionSheet()),
                 );
               },
               child: Text('시간표 생성'),
             ),
             SizedBox(height: 20), // 버튼 사이에 간격 추가
-            ElevatedButton(
-              onPressed: () {
-                // 두 번째 버튼 클릭 시 처리할 로직 추가.
-                print('내 시간표 버튼이 클릭되었습니다.');
-              },
-              child: Text('내 시간표'),
-            ),
+            // ElevatedButton(
+            //   // onPressed: () {
+            //   //   Navigator.push(
+            //   //     context,
+            //   //     MaterialPageRoute(builder: (context) => const (?)),
+            //   //   );
+            //   },
+              // child: Text('내 시간표'),
+            // ),
           ],
         ),
       ),
