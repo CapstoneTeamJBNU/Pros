@@ -18,11 +18,69 @@ class TimeTable extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text('수업 시간표'),
+          actions: <Widget>[
+            Container(
+              width: 240, // Increased width to accommodate the button and text field
+              margin: const EdgeInsets.symmetric(vertical: 8),
+              child: Row(
+                children: [
+                  Spacer(), // 왼쪽 여백을 추가하여 버튼을 중간으로 밀어냄
+
+                  TextButton(
+                    onPressed: () {
+                      showDialogAddMajor(context);
+                      // + 버튼 클릭 시 다이얼로그 출력
+                    },
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                      backgroundColor: Colors.grey,
+                      // 내부 간격을 없애기 위해 zero로 설정
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(Icons.add, color: Colors.black), // 아이콘 추가
+                        SizedBox(width: 0.1), // 아이콘과 텍스트 사이 간격 조정
+                        Text('전공',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ), // 텍스트 추가
+                      ],
+                    ),
+                  ),
+
+                  Spacer(), // 오른쪽 여백을 추가하여 검색 필드와의 간격 유지
+                ],
+              ),
+            ),
+
+            SizedBox(
+              width: 240, // Fixed width for the search TextField
+              child: TextField(
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey,
+                  hintText: '검색',
+                  prefixIcon: const Icon(Icons.search),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: BorderSide.none,
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+                ),
+                onChanged: (value) {
+                  // 검색 로직 추가
+                },
+              ),
+            ),
+          ],
         ),
         body: Container(
-          margin: const EdgeInsets.all(20), // 외부 여백 추가
+          margin: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey), // 테두리 추가
+            border: Border.all(color: Colors.grey),
           ),
           child: const ScheduleTable(),
         ),
@@ -31,6 +89,7 @@ class TimeTable extends StatelessWidget {
   }
 }
 
+
 class ScheduleTable extends StatefulWidget {
   const ScheduleTable({super.key});
   @override
@@ -38,7 +97,6 @@ class ScheduleTable extends StatefulWidget {
 }
 
 class ScheduleTableState extends State<ScheduleTable> {
-  /* 테이블 UI 변수 */
   final List<String> week = ['월', '화', '수', '목', '금', '토', '일'];
   var kColumnLength = 22;
   var maxTime = 11;
@@ -51,7 +109,6 @@ class ScheduleTableState extends State<ScheduleTable> {
   /* 스터브들 */
   late final DocumentReference basketRef;
 
-  /* 파이어베이스 데이터 참조용 변수들 */
   late List<Lecture> lectureList;
 
   Future<void> initLectureList() async {
@@ -83,8 +140,7 @@ class ScheduleTableState extends State<ScheduleTable> {
         lectureList.add(lecture);
         logger.i('${lecture.lectureId} ${lecture.properties["과목명"]} ${lecture.properties["시간"]}');
       }
-    }
-    catch(e){
+    } catch (e) {
       logger.e(e);
     }
   }
@@ -98,10 +154,21 @@ class ScheduleTableState extends State<ScheduleTable> {
   void dispose() {
     super.dispose();
   }
-  
-  /* 새 코드 */
+
   @override
   Widget build(BuildContext context) {
+    // 강의명-색상 매핑 딕셔너리 (전역 변수로 선언)
+    final Map<String, Color> courseColors = {};
+
+    Color getCourseColor(String courseName) {
+      if (!courseColors.containsKey(courseName)) {
+        courseColors[courseName] = RandomColor().randomColor(
+            colorHue: ColorHue.multiple(colorHues: [ColorHue.blue, ColorHue.green, ColorHue.purple])
+        );
+      }
+      return courseColors[courseName]!;
+    }
+
     return FutureBuilder(
       future: initLectureList(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -174,6 +241,19 @@ class ScheduleTableState extends State<ScheduleTable> {
   List<Widget> buildDayColumn(int index) {
     late String date;
     RandomColor randomColor = RandomColor();
+
+    // 강의명-색상 매핑 딕셔너리
+    final Map<String, Color> courseColors = {};
+
+    Color getCourseColor(String courseName) {
+      if (!courseColors.containsKey(courseName)) {
+        courseColors[courseName] = randomColor.randomColor(
+            colorHue: ColorHue.multiple(colorHues: [ColorHue.blue, ColorHue.green, ColorHue.purple])
+        );
+      }
+      return courseColors[courseName]!;
+    }
+
     return [
       const VerticalDivider(
         color: Colors.grey,
@@ -237,7 +317,7 @@ class ScheduleTableState extends State<ScheduleTable> {
                                 // }' // 값이 매칭될 때의 텍스트 // 값이 매칭될 때의 텍스트
                             : '' // 값이 매칭되지 않을 때의 텍스트
                           ),
-                        )
+                        ),
                       ),
                     );
                   },
@@ -275,46 +355,41 @@ class ScheduleTableState extends State<ScheduleTable> {
                     borderRadius: BorderRadius.zero,
                     ),
                   ),
-                  padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.zero),
-                  minimumSize: MaterialStateProperty.all<Size>(const Size(0, 0)),
                 ),
-                child: const Text("삭제")
-              ),
-            ),
-            const Padding(padding: EdgeInsets.only(right: 10)),
-            Align(
-              child: TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop(); //창 닫기
-                },
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.zero,
-                    ),
+                const Padding(padding: EdgeInsets.only(right: 10)),
+                Align(
+                  child: TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop(); //창 닫기
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.zero,
+                          ),
+                        ),
+                        padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.zero),
+                        minimumSize: MaterialStateProperty.all<Size>(const Size(0, 0)),
+                      ),
+                      child: const Text("X")
                   ),
-                  padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.zero),
-                  minimumSize: MaterialStateProperty.all<Size>(const Size(0, 0)),
                 ),
-                child: const Text("X")
-              ),
+              ],
             ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.7, // 화면 너비의 70%
-                height: MediaQuery.of(context).size.height * 0.7, // 화면 높이의 70%
-                child: const PieChart(),
-              ),
-              const SizedBox(
-                child:Text('강의 평가 내용 수록용\n임시 영역')
-              )
-            ],
-          ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.7, // 화면 너비의 70%
+                  height: MediaQuery.of(context).size.height * 0.7, // 화면 높이의 70%
+                  child: const PieChart(),
+                ),
+                const SizedBox(
+                    child:Text('강의 평가 내용 수록용\n임시 영역')
+                )
+              ],
+            ),
           ],
         );
       }
@@ -382,21 +457,78 @@ class ScheduleTableState extends State<ScheduleTable> {
   }
 void showNormalLectureList(){
   showDialog(
-    context: context,
-    barrierDismissible: true,
-    builder: ((context) {
-      return const AlertDialog(
-        content: SizedBox(
-          width: double.maxFinite,
-          child: LectureList(),
-        ),
+      context: context,
+      barrierDismissible: true,
+      builder: ((context) {
+        return const AlertDialog(
+          content: SizedBox(
+            width: double.maxFinite,
+            child: LectureList(),
+          ),
         );
-    })
+      })
   );
 }
 
 void showLiberalArtLectureList(){
 
+}
+void showDialogAddMajor() {
+  showDialog(
+    context: context,
+    barrierDismissible: false, // 바깥 영역 터치 시 닫지 않음
+    builder: (context) {
+      return AlertDialog(
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(); // 창 닫기
+                },
+                style: ButtonStyle(
+                  backgroundColor:
+                  MaterialStateProperty.all<Color>(Colors.transparent),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.zero,
+                    ),
+                  ),
+                  padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.zero),
+                  minimumSize:
+                  MaterialStateProperty.all<Size>(const Size(0, 0)),
+                ),
+                child: const Text("X"),
+              ),
+            ),
+            const Align(
+              alignment: Alignment.center,
+              child: Text("전공과목 추가하기"),
+            ),
+            Align(
+              alignment: Alignment.center,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  OutlinedButton(
+                    onPressed: () {},
+                    child: const Text("전필"),
+                  ),
+                  const SizedBox(width: 20),
+                  OutlinedButton(
+                    onPressed: () {},
+                    child: const Text("전선"),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    },
+  );
 }
 }
 extension FirstWhereOrNullExtension<T> on List<T> {
