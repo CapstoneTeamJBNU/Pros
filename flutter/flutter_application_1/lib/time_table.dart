@@ -10,6 +10,63 @@ class TimeTable extends StatelessWidget {
   const TimeTable({super.key});
   @override
   Widget build(BuildContext context) {
+    void showDialogAddMajor() {
+  showDialog(
+    context: context,
+    barrierDismissible: false, // 바깥 영역 터치 시 닫지 않음
+    builder: (context) {
+      return AlertDialog(
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(); // 창 닫기
+                },
+                style: ButtonStyle(
+                  backgroundColor:
+                  MaterialStateProperty.all<Color>(Colors.transparent),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.zero,
+                    ),
+                  ),
+                  padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.zero),
+                  minimumSize:
+                  MaterialStateProperty.all<Size>(const Size(0, 0)),
+                ),
+                child: const Text("X"),
+              ),
+            ),
+            const Align(
+              alignment: Alignment.center,
+              child: Text("전공과목 추가하기"),
+            ),
+            Align(
+              alignment: Alignment.center,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  OutlinedButton(
+                    onPressed: () {},
+                    child: const Text("전필"),
+                  ),
+                  const SizedBox(width: 20),
+                  OutlinedButton(
+                    onPressed: () {},
+                    child: const Text("전선"),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}
     return MaterialApp(
       title: 'Schedule Table',
       theme: ThemeData(
@@ -28,7 +85,7 @@ class TimeTable extends StatelessWidget {
 
                   TextButton(
                     onPressed: () {
-                      showDialogAddMajor(context);
+                      showDialogAddMajor();
                       // + 버튼 클릭 시 다이얼로그 출력
                     },
                     style: TextButton.styleFrom(
@@ -469,66 +526,8 @@ void showNormalLectureList(){
       })
   );
 }
-
 void showLiberalArtLectureList(){
 
-}
-void showDialogAddMajor() {
-  showDialog(
-    context: context,
-    barrierDismissible: false, // 바깥 영역 터치 시 닫지 않음
-    builder: (context) {
-      return AlertDialog(
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop(); // 창 닫기
-                },
-                style: ButtonStyle(
-                  backgroundColor:
-                  MaterialStateProperty.all<Color>(Colors.transparent),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.zero,
-                    ),
-                  ),
-                  padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.zero),
-                  minimumSize:
-                  MaterialStateProperty.all<Size>(const Size(0, 0)),
-                ),
-                child: const Text("X"),
-              ),
-            ),
-            const Align(
-              alignment: Alignment.center,
-              child: Text("전공과목 추가하기"),
-            ),
-            Align(
-              alignment: Alignment.center,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  OutlinedButton(
-                    onPressed: () {},
-                    child: const Text("전필"),
-                  ),
-                  const SizedBox(width: 20),
-                  OutlinedButton(
-                    onPressed: () {},
-                    child: const Text("전선"),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      );
-    },
-  );
 }
 }
 extension FirstWhereOrNullExtension<T> on List<T> {
