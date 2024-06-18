@@ -55,7 +55,25 @@ class TimeTable extends StatelessWidget {
                   ),
                   const SizedBox(width: 20),
                   OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      /* 스터브 코드, basketRef 및 해당 부분 구조 개선 필요 */
+                    //   const String accountCollection = 'ACCOUNT_INFO';
+                    //   const String accountId = '3naGNQCcm3SVumZY2HTe';
+                    //   const String docTag = '2024_0';
+                    //   const String lectureBasket = 'LECTURE_BASKET';
+                    //   DocumentReference basketRef = FirebaseFirestore.instance.collection(accountCollection)
+                    //     .doc(accountId)
+                    //     .collection(lectureBasket)
+                    //     .doc(docTag);
+                    //   final updates = <String, dynamic>{
+                    //     'newField': 'newValue',
+                    //   };
+                    // basketRef.update(updates);
+                    // Navigator.of(context).pop(); //창 닫기
+                    // setState(() {
+                    //   lectureList.add(lecture);
+                    // });
+                    },
                     child: const Text("전선"),
                   ),
                 ],
@@ -81,7 +99,7 @@ class TimeTable extends StatelessWidget {
               margin: const EdgeInsets.symmetric(vertical: 8),
               child: Row(
                 children: [
-                  Spacer(), // 왼쪽 여백을 추가하여 버튼을 중간으로 밀어냄
+                  const Spacer(), // 왼쪽 여백을 추가하여 버튼을 중간으로 밀어냄
 
                   TextButton(
                     onPressed: () {
@@ -93,7 +111,7 @@ class TimeTable extends StatelessWidget {
                       backgroundColor: Colors.grey,
                       // 내부 간격을 없애기 위해 zero로 설정
                     ),
-                    child: Row(
+                    child: const Row(
                       children: [
                         Icon(Icons.add, color: Colors.black), // 아이콘 추가
                         SizedBox(width: 0.1), // 아이콘과 텍스트 사이 간격 조정
@@ -108,7 +126,7 @@ class TimeTable extends StatelessWidget {
                     ),
                   ),
 
-                  Spacer(), // 오른쪽 여백을 추가하여 검색 필드와의 간격 유지
+                  const Spacer(), // 오른쪽 여백을 추가하여 검색 필드와의 간격 유지
                 ],
               ),
             ),
@@ -166,7 +184,7 @@ class ScheduleTableState extends State<ScheduleTable> {
   double kBoxSize = 55; // kBoxSize 변수의 값을 줄임
   double kButtonWidth = 163; // 버튼의 가로 크기를 조절할 수 있는 변수
   /* 스터브들 */
-  late final DocumentReference basketRef;
+  DocumentReference? basketRef;
 
   late List<Lecture> lectureList;
 
@@ -179,12 +197,12 @@ class ScheduleTableState extends State<ScheduleTable> {
       const String lectureBasket = 'LECTURE_BASKET';
       const String identifier = 'JBNU';
       const String lectureCollection = 'OPEN_LECTURE_2024_0';
-      basketRef = FirebaseFirestore.instance.collection(accountCollection)
-      .doc(accountId)
-      .collection(lectureBasket)
-      .doc(docTag);
-      DocumentSnapshot basket = await basketRef.get();
-      List<String?>? documentData = (basket.data() as Map<String, dynamic>?)?.keys.toList().cast<String>();
+      basketRef ??= FirebaseFirestore.instance.collection(accountCollection)
+        .doc(accountId)
+        .collection(lectureBasket)
+        .doc(docTag);
+      DocumentSnapshot? basket = await basketRef?.get();
+      List<String?>? documentData = (basket?.data() as Map<String, dynamic>?)?.keys.toList().cast<String>();
       lectureList = [];
       for (int i = 0; i < documentData!.length; i++) {
         DocumentSnapshot doc = await FirebaseFirestore.instance.collection(defaultDirectory)
@@ -403,7 +421,11 @@ class ScheduleTableState extends State<ScheduleTable> {
                   final updates = <String, dynamic>{
                     lecture.id : FieldValue.delete(),
                   };
-                  basketRef.update(updates);
+                  basketRef?.update(updates);
+                  Navigator.of(context).pop(); //창 닫기
+                  setState(() {
+                    lectureList.remove(lecture);
+                  });
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
