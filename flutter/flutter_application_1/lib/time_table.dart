@@ -310,7 +310,7 @@ class ScheduleTableState extends State<ScheduleTable> {
       }
       return courseColors[courseName]!;
     }
-
+    
     return [
       const VerticalDivider(
         color: Colors.grey,
@@ -351,24 +351,39 @@ class ScheduleTableState extends State<ScheduleTable> {
                       child: DecoratedBox(
                         decoration: BoxDecoration(
                           color:
-                            lectureList.any((element)=>element.properties["시간"]!.contains('$date ${index ~/ 2}'))
+                          // 추후 -A -B 사용시 1, 10 구분 오류 필요
+                            // lectureList.any((element)=>element.properties["시간"]!.contains('$date ${index ~/ 2}'))
+                            lectureList.any(
+                              (element)=>element.properties["시간"]!.replaceAll(
+                                RegExp(r'-[AB]'),'').split(",").contains('$date ${index ~/ 2}')
+                                )
                             ? randomColor.randomColor(
                             colorHue: ColorHue.multiple(colorHues: [ColorHue.blue, ColorHue.green, ColorHue.purple]))// 값이 매칭될 때의 텍스트 // 값이 매칭될 때의 텍스트
                             : Colors.transparent,
                         ),
                         child: TextButton(
                           onPressed: (){
-                            lectureList.any((element) => element.properties['시간']!.contains('$date ${index ~/ 2}'))
+                            lectureList.any(
+                              (element)=>element.properties["시간"]!.replaceAll(
+                                RegExp(r'-[AB]'),'').split(",").contains('$date ${index ~/ 2}')
+                                )
                             ? showDialogExist(
                               lectureList.firstWhere(
-                                (element) => element.properties["시간"]!.contains('$date ${index ~/ 2}')))
+                                (element)=>element.properties["시간"]!.replaceAll(
+                                RegExp(r'-[AB]'),'').split(",").contains('$date ${index ~/ 2}'))
+                                )
                             : showDialogNotExist();
                           },
                           child : Text(
-                            lectureList.any((element) => element.properties["시간"]!.contains('$date ${index ~/ 2}'))
+                            lectureList.any(
+                              (element)=>element.properties["시간"]!.replaceAll(
+                                RegExp(r'-[AB]'),'').split(",").contains('$date ${index ~/ 2}')
+                                )
                             ? '${
-                              lectureList.firstWhere((element) => element.properties[
-                                "시간"]!.contains("$date ${index ~/ 2}")).properties["과목명"]}'//\n ${
+                              lectureList.firstWhere(
+                                (element)=>element.properties["시간"]!.replaceAll(
+                                RegExp(r'-[AB]'),'').split(",").contains('$date ${index ~/ 2}'))
+                                .properties["과목명"]}'//\n ${
                                 //   lectureList.firstWhere((element) => element.properties[
                                 // "시간"]!.contains('$date ${index ~/ 2}')).properties["담당교수"]
                                 // }' // 값이 매칭될 때의 텍스트 // 값이 매칭될 때의 텍스트
@@ -413,8 +428,10 @@ class ScheduleTableState extends State<ScheduleTable> {
                     ),
                   ),
                 ),
-                const Padding(padding: EdgeInsets.only(right: 10)),
-                Align(
+                child: const Text("삭제"),
+              ),
+            ),
+            Align(
                   child: TextButton(
                       onPressed: () {
                         Navigator.of(context).pop(); //창 닫기
@@ -431,8 +448,8 @@ class ScheduleTableState extends State<ScheduleTable> {
                       ),
                       child: const Text("X")
                   ),
-                ),
-              ],
+            ),
+          ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
