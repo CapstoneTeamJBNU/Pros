@@ -155,6 +155,8 @@ class ScheduleTable extends StatefulWidget {
 
 class ScheduleTableState extends State<ScheduleTable> {
   final List<String> week = ['월', '화', '수', '목', '금', '토', '일'];
+  late Map<String, dynamic> lectureColor;
+
   var kColumnLength = 22;
   var maxTime = 11;
   var maxDay = 5;
@@ -191,7 +193,7 @@ class ScheduleTableState extends State<ScheduleTable> {
           .doc(documentData[i])
           .get();
         Lecture lecture = Lecture.fromFirestore(doc);
-        List<String> schedule = lecture.properties["시간"]!.split(',');
+        // List<String> schedule = lecture.properties["시간"]!.split(',');
         // maxTime = int.parse(lecture.properties["시간"]!.split('-')[0].split(' ')[1]) > maxTime ? int.parse(lecture.properties["시간"]!) : maxTime;
         // maxDay = week.indexOf(lecture.properties["시간"].last!.split(" ")[0]) > maxDay ? week.indexOf(lecture.properties["시간"]!.split(" ")[0]) : maxDay;
         lectureList.add(lecture);
@@ -200,6 +202,13 @@ class ScheduleTableState extends State<ScheduleTable> {
     } catch (e) {
       logger.e(e);
     }
+    RandomColor randomColor = RandomColor();
+    lectureColor =
+    {
+      for (Lecture lecture in lectureList)
+        lecture.lectureId : randomColor.randomColor(
+          colorHue: ColorHue.multiple(colorHues: [ColorHue.blue, ColorHue.green, ColorHue.purple]))
+    };
   }
 
   @override
@@ -214,18 +223,6 @@ class ScheduleTableState extends State<ScheduleTable> {
 
   @override
   Widget build(BuildContext context) {
-    // 강의명-색상 매핑 딕셔너리 (전역 변수로 선언)
-    final Map<String, Color> courseColors = {};
-
-    Color getCourseColor(String courseName) {
-      if (!courseColors.containsKey(courseName)) {
-        courseColors[courseName] = RandomColor().randomColor(
-            colorHue: ColorHue.multiple(colorHues: [ColorHue.blue, ColorHue.green, ColorHue.purple])
-        );
-      }
-      return courseColors[courseName]!;
-    }
-
     return FutureBuilder(
       future: initLectureList(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -297,20 +294,6 @@ class ScheduleTableState extends State<ScheduleTable> {
 
   List<Widget> buildDayColumn(int index) {
     late String date;
-    RandomColor randomColor = RandomColor();
-
-    // 강의명-색상 매핑 딕셔너리
-    final Map<String, Color> courseColors = {};
-
-    Color getCourseColor(String courseName) {
-      if (!courseColors.containsKey(courseName)) {
-        courseColors[courseName] = randomColor.randomColor(
-            colorHue: ColorHue.multiple(colorHues: [ColorHue.blue, ColorHue.green, ColorHue.purple])
-        );
-      }
-      return courseColors[courseName]!;
-    }
-    
     return [
       const VerticalDivider(
         color: Colors.grey,
@@ -355,10 +338,12 @@ class ScheduleTableState extends State<ScheduleTable> {
                             // lectureList.any((element)=>element.properties["시간"]!.contains('$date ${index ~/ 2}'))
                             lectureList.any(
                               (element)=>element.properties["시간"]!.replaceAll(
-                                RegExp(r'-[AB]'),'').split(",").contains('$date ${index ~/ 2}')
-                                )
-                            ? randomColor.randomColor(
-                            colorHue: ColorHue.multiple(colorHues: [ColorHue.blue, ColorHue.green, ColorHue.purple]))// 값이 매칭될 때의 텍스트 // 값이 매칭될 때의 텍스트
+                                RegExp(r'-[AB]'),'').split(",").contains('$date ${index ~/ 2}'))
+                            ? lectureColor[
+                              lectureList.firstWhere(
+                                (element)=>element.properties["시간"]!.replaceAll(
+                                RegExp(r'-[AB]'),'').split(",").contains('$date ${index ~/ 2}')).lectureId
+                            ]// 값이 매칭될 때의 텍스트 // 값이 매칭될 때의 텍스트
                             : Colors.transparent,
                         ),
                         child: TextButton(
