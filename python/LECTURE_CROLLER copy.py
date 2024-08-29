@@ -7,7 +7,6 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 import openpyxl
 import logging
-import custom_firestore
 import time
 import os
 import glob
@@ -249,12 +248,6 @@ class croller:
             print(e)
         
         self.driver.quit()
-
-    def firstInit(self):
-        #iframe으로 전환(아직 미구현)
-        #iframe = wait.until(EC.presence_of_element_located((By.TAG_NAME, Const.CSS_TAGNAME('IFRAME'))))
-        #self.driver.switch_to.frame(iframe)
-        pass
 
 if __name__ == '__main__':
     data = croller()

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/register_page.dart';
-import 'package:flutter_application_1/choice_page.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
+
+import 'package:RTT/choice_page.dart';
+import 'package:RTT/register_page.dart';
 
 class LoginPage extends StatefulWidget{
   const LoginPage({super.key});
@@ -116,7 +118,7 @@ class LoginPageState extends State{
                         onPressed: (){
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => RegisterPage()),
+                            MaterialPageRoute(builder: (context) => const RegisterPage()),
                           );
                         },
                       child: const Text('회원가입')
