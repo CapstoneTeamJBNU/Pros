@@ -1,5 +1,6 @@
-import 'package:flutter_application_1/lecture.dart';
 
+
+import 'package:RTT/lecture.dart';
 
 class Account {
 

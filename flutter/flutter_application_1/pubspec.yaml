@@ -1,5 +1,5 @@
-name: flutter_application_1
-description: "A new Flutter project."
+name: RTT
+description: "Lecture Recommandation of Time Table" 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -41,6 +41,8 @@ dependencies:
   logger: ^2.3.0
   random_color: ^1.0.6-nullsafety
   graphic: ^2.2.1
+  flutter_flavorizr: ^2.2.3
+  flutter_application_1: ^0.0.2
 
 dev_dependencies:
   flutter_test:

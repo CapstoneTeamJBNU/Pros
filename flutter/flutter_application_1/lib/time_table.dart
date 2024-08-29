@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_application_1/lecture_analysis.dart';
 import 'package:logger/web.dart';
 import 'package:random_color/random_color.dart';
-import 'package:flutter_application_1/firestore_lecture_listview.dart';
+
+import 'firestore_lecture_listview.dart';
 import 'lecture.dart';
+import 'lecture_analysis.dart';
 
 class TimeTable extends StatelessWidget {
   const TimeTable({super.key});

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_application_1/time_table.dart';
+
+import 'time_table.dart';
+
 /// 사용자 기초 데이터 : 학과, 학년에 대한 입력
 /// 초기 강의 투입 고정 -> 학년, 학과를 기준으로 전공 필수 과목 추가
 /// 이후 사용자 선호도에 따라 작업을 수행함
