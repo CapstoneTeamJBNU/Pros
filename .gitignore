@@ -2,7 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=flutter
 
 ### API key files ###
-Firebase/Keys/capstonejbnuteam8-firebase-adminsdk-oyel5-55cda941a1.json
+.Firebase/Keys/capstonejbnuteam8-firebase-adminsdk-oyel5-55cda941a1.json
 
 ### MacOS ###
 *.DS_Store
