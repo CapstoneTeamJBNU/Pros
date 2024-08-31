@@ -103,5 +103,5 @@
 ### 전북대학교 LMS에 아이디어 차용
 <details>
   <summary>전북대 LMS 좌측 "수강신청 도우미" 서비스탭</summary>
-  <p><img src="https://github.com/user-attachments/assets/ad53a3a9-4f67-4bc4-a50b-d81a38a624db" alt="LMS" width="750"></p>
+  <p><img src="https://github.com/user-attachments/assets/8cef527c-2fa2-429c-bc82-a7400a59248b" alt="LMS" width="750"></p>
 </details>
