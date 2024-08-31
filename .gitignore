@@ -2,10 +2,11 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=flutter
 
 ### API key files ###
-Firebase/Keys/
+Keys/
 
 ### MacOS ###
-*.DS_Store
+.DS_Store
+.DS_Store.orig
 
 ### Flutter ###
 # Flutter/Dart/Pub related
