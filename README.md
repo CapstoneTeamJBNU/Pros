@@ -1,6 +1,6 @@
 # RecommendTimeTable(RTT,Syllas)
 ## 대학교 개설강좌 데이터를 활용한 맞춤 시간표 추천시스템
-![시연 영상](https://github.com/user-attachments/assets/b557bdfd-4a9c-4e1f-a393-ffe4a7a4275b)
+![시연 영상](https://github.com/user-attachments/assets/5adaa3fa-ddd9-4388-9b64-2301fb9953b6)
 
 <details>
   <summary>사용 개발전략</summary>
@@ -13,35 +13,35 @@
 #### WBS
 <details>
   <summary>WBS 펼치기</summary>
-  <p><img src="https://github.com/user-attachments/assets/2f81ef35-11cf-43a4-859a-163a2c306c10" alt="image" width="600"></p>
+  <p><img src="https://github.com/user-attachments/assets/2197f240-2fb5-445a-82b0-a51c78523629" alt="image" width="600"></p>
 </details>
 
 #### LRC
 <details>
   <summary>LRC 펼치기</summary>
-  <p><img src="https://github.com/user-attachments/assets/65b513fd-b31e-4135-85cc-1846c326b59d" alt="image" width="600"></p>
+  <p><img src="https://github.com/user-attachments/assets/0cc0414f-38f9-440b-b512-3c2ca8334246" alt="image" width="600"></p>
 </details>
 
 #### Business Process Model(BPM)
 <details>
   <summary>BPM 펼치기</summary>
-  <p><img src="https://github.com/user-attachments/assets/f090690b-0107-4b77-ae94-690d96526939" alt="image" width="600"></p>
+  <p><img src="https://github.com/user-attachments/assets/0c1fc1bd-ff2e-4e76-8acc-f93bbc3ebf25" alt="image" width="600"></p>
 </details>
 
 #### Business Object Model(BOM)
 <details>
   <summary>BOM 펼치기</summary>
-  <p><img src="https://github.com/user-attachments/assets/035529fc-6c72-4675-ae79-e0624d1f7885" alt="image" width="600"></p>
+  <p><img src="https://github.com/user-attachments/assets/0c14c461-f742-4093-b1a4-5c92eb046a68" alt="image" width="600"></p>
 </details>
 
 #### Usecase Diagram
 <details>
   <summary>Usecase Diagram 펼치기</summary>
-  <p><img src="https://github.com/user-attachments/assets/abd13098-54f1-4983-99e0-c9f818bd85d4" alt="image" width="600"></p>
+  <p><img src="https://github.com/user-attachments/assets/24c5d956-9361-46ba-a784-0aa3bbe1ab84" alt="image" width="600"></p>
 </details>
 
 #### System Architecture
-![image](https://github.com/user-attachments/assets/43acd7db-d3f8-4746-81ff-76f41febcb22)
+![image](https://github.com/user-attachments/assets/0a38ced8-d90c-41fa-b2d3-23f8adda2e4d)
 <details>
   <summary>시스템 아키텍쳐 설명</summary>
   <ul>
@@ -50,7 +50,7 @@
 </details>
 
 #### Flutter 디렉토리 설정
-![image](https://github.com/user-attachments/assets/438833a8-59c6-450a-9150-87aa6c686ade)
+<img src="https://github.com/user-attachments/assets/5e749b01-fe97-48dc-98be-651bc7380f43" alt="image" width="300" height="500"/>
 <details>
   <summary>각 디렉토리별 역할</summary>
   <ul>
@@ -62,7 +62,7 @@
 </details>
 
 #### FastAPI 디렉토리 설정
-![image](https://github.com/user-attachments/assets/6a515d7d-f5c2-41f9-83b6-be2ee20e535d)
+<img src="https://github.com/user-attachments/assets/91969604-5e5a-41de-83cf-32a2ff60c135" alt="image" width="300" height="400"/>
 <details>
   <summary>각 디렉토리별 역할</summary>
   <ul>
@@ -97,11 +97,11 @@
 ### 논문 경진대회 수상
 <details>
   <summary>상장</summary>
-  <p><img src="https://github.com/user-attachments/assets/ec3ceda0-475d-47e2-9fa9-380907573e4d" alt="논문 금상" width="600"></p>
+  <p><img src="https://github.com/user-attachments/assets/2a249682-d0ea-4886-9987-1fc33565b18c" alt="논문 금상" width="600"></p>
 </details>
 
 ### 전북대학교 LMS에 아이디어 차용
 <details>
   <summary>전북대 LMS 좌측 "수강신청 도우미" 서비스탭</summary>
-  <p><img src="https://github.com/user-attachments/assets/cee84367-764a-4cdf-83ab-df5fc30b6142" alt="LMS" width="750"></p>
+  <p><img src="https://github.com/user-attachments/assets/ad53a3a9-4f67-4bc4-a50b-d81a38a624db" alt="LMS" width="750"></p>
 </details>
